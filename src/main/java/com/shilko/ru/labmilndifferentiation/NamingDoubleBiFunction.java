@@ -2,17 +2,17 @@ package com.shilko.ru.labmilndifferentiation;
 
 import java.util.function.BiFunction;
 
-public class NamingBiFunction {
+public class NamingDoubleBiFunction {
 
-    private BiFunction function;
+    private DoubleBiFunction function;
     private String alias;
 
-    public NamingBiFunction(BiFunction function, String alias) {
+    public NamingDoubleBiFunction(DoubleBiFunction function, String alias) {
         this.function = function;
         this.alias = alias;
     }
 
-    public BiFunction getFunction() {
+    public DoubleBiFunction getFunction() {
         return function;
     }
 

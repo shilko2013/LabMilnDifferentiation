@@ -22,7 +22,7 @@ import java.util.List;
 
 public class MainFrame extends JFrame {
 
-    private final List<NamingBiFunction> functions;
+    private final List<NamingDoubleBiFunction> functions;
     private JPanel chartPanel;
     private List<Point> points;
     private final XYSeriesCollection dataset;
@@ -134,7 +134,7 @@ public class MainFrame extends JFrame {
     }
 
     private void initFunctionAliases() {
-        String[] funcNames = functions.stream().map(NamingBiFunction::getAlias).toArray(String[]::new);
+        String[] funcNames = functions.stream().map(NamingDoubleBiFunction::getAlias).toArray(String[]::new);
         for (int i = 0; i < funcNames.length; ++i)
             funcNames[i] = "y' = " + funcNames[i];
         functionNames =
@@ -142,26 +142,10 @@ public class MainFrame extends JFrame {
     }
 
     private void fillFunctions() {
-        functions.add(new NamingBiFunction((argX, argY) -> {
-            double x = (double) argX;
-            double y = (double) argY;
-            return -2 * x;
-        }, "-2x"));
-        functions.add(new NamingBiFunction((argX, argY) -> {
-            double x = (double) argX;
-            double y = (double) argY;
-            return x - y;
-        }, "x - y"));
-        functions.add(new NamingBiFunction((argX, argY) -> {
-            double x = (double) argX;
-            double y = (double) argY;
-            return Math.log(x * x + 1);
-        }, "ln(x^2+1)"));
-        functions.add(new NamingBiFunction((argX, argY) -> {
-            double x = (double) argX;
-            double y = (double) argY;
-            return x - 2 * y;
-        }, "x - 2y"));
+        functions.add(new NamingDoubleBiFunction((x, y) -> -2 * x, "-2x"));
+        functions.add(new NamingDoubleBiFunction((x, y) -> x - y, "x - y"));
+        functions.add(new NamingDoubleBiFunction((x, y) -> Math.log(x * x + 1), "ln(x^2+1)"));
+        functions.add(new NamingDoubleBiFunction((x, y) -> x - 2 * y, "x - 2y"));
     }
 
     private void initGraph() {
